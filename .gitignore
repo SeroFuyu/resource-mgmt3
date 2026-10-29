@@ -1,3 +1,6 @@
+# Database file
+utils/resources.json
+
 # Logs
 logs
 *.log
