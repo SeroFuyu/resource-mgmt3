@@ -1,8 +1,145 @@
-<html>
-    <head>
-        <title>DVOPS - Resource Management Web App</title>
-    </head>
-    <body>
-        Welcome to my Resource Management Web Application. In this application, users will get to manage resources.
-    </body>
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>DVOPS - Resource Management Web App</title>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <link
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/styles.css" />
+
+    <script src="js/view-resources.js" defer></script>
+  </head>
+
+  <body onload="viewResources()">
+    <div class="container mt-5">
+      <!-- Logo -->
+      <div class="row justify-content-center mb-4">
+        <img src="images/logo.png" alt="DVOPS Logo" />
+      </div>
+
+      <!-- Page Heading -->
+      <div class="row mb-3">
+        <div class="col-md-10">
+          <h2>View Resources</h2>
+        </div>
+
+        <div class="col-md-2">
+          <a href="add-resource.html" class="btn btn-primary"> Add Resource </a>
+        </div>
+      </div>
+
+      <!-- Resource Table -->
+      <div class="row">
+        <div class="col-md-12">
+          <table class="table table-striped table-striped-custom">
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Location</th>
+                <th>Description</th>
+                <th>Owner</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+
+            <tbody id="tableContent"></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modify Resource Modal -->
+    <div
+      class="modal fade"
+      id="modifyResourceModal"
+      tabindex="-1"
+      role="dialog"
+    >
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Modify Resource</h5>
+
+            <button type="button" class="close" data-dismiss="modal">
+              <span>&times;</span>
+            </button>
+          </div>
+
+          <div class="modal-body">
+            <form id="modifyResourceForm">
+              <input type="hidden" id="modifyId" />
+
+              <div class="form-group">
+                <label for="modifyName">Resource Name</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="modifyName"
+                  required
+                />
+              </div>
+
+              <div class="form-group">
+                <label for="modifyLocation">Location</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="modifyLocation"
+                  required
+                />
+              </div>
+
+              <div class="form-group">
+                <label for="modifyDescription">Description</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="modifyDescription"
+                  required
+                />
+              </div>
+
+              <div class="form-group">
+                <label for="modifyOwner">Owner</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="modifyOwner"
+                  required
+                />
+              </div>
+            </form>
+          </div>
+
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-dismiss="modal"
+            >
+              Close
+            </button>
+
+            <button
+              type="button"
+              class="btn btn-primary"
+              onclick="updateResource()"
+            >
+              Save Changes
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
 </html>
