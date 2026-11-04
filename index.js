@@ -9,7 +9,10 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(express.static("./public"));
 
-const { addResource } = require('./utils/AddResourceUtil')
+const { viewResources } = require('./utils/ViewResourceUtil');
+app.get('/view-resources', viewResources);
+
+const { addResource } = require('./utils/AddResourceUtil');
 app.post('/add-resource', addResource);
 
 app.get('/', (req, res) => {
@@ -18,8 +21,7 @@ app.get('/', (req, res) => {
 
 server = app.listen(PORT, function () {
     const address = server.address();
-    const baseUrl = `http://${address.address == "::" ? 'localhost' :
-        address.address}:${address.port}`;
+    const baseUrl = `http://${address.address == "::" ? 'localhost' : address.address}:${address.port}`;
     console.log(`Demo project at: ${baseUrl}`);
 });
 
