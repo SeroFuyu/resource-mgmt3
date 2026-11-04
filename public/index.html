@@ -1,6 +1,6 @@
 
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
     <meta charset="UTF-8">
@@ -14,10 +14,10 @@
 
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
 
-    <script src="js/add-resource.js"></script>
-    <script src="js/view-resources.js"></script>
-
     <link rel="stylesheet" href="css/styles.css">
+
+    <script src="js/add-resource.js" defer></script>
+    <script src="js/view-resources.js" defer></script>
 </head>
 
 <body onload="viewResources()">
@@ -25,20 +25,22 @@
     <div class="container mt-5">
 
         <!-- Logo -->
-        <div class="row justify-content-center">
-            <img src="images/logo.png" alt="Logo">
+        <div class="row justify-content-center mb-4">
+            <img src="images/logo.png" alt="DVOPS Logo">
         </div>
 
-        <!-- Add Resource Button -->
-        <div class="row justify-content-end mt-4 mb-3">
+        <!-- Heading and Add Resource Button -->
+        <div class="row mb-3">
+
+            <div class="col-md-10">
+                <h2>Resource Management</h2>
+            </div>
 
             <div class="col-md-2">
 
                 <button type="button" class="btn btn-primary"
                     data-toggle="modal" data-target="#resourceModal">
-
                     Add Resource
-
                 </button>
 
             </div>
@@ -46,7 +48,7 @@
         </div>
 
         <!-- View Resources Table -->
-        <div class="row justify-content-center">
+        <div class="row">
 
             <div class="col-md-12">
 
@@ -77,7 +79,7 @@
 
     <!-- Add Resource Modal -->
     <div class="modal fade" id="resourceModal" tabindex="-1"
-        role="dialog" aria-labelledby="resourceModalLabel" aria-hidden="true">
+        role="dialog" aria-labelledby="resourceModalLabel">
 
         <div class="modal-dialog" role="document">
 
@@ -90,14 +92,14 @@
                     </h5>
 
                     <button type="button" class="close" data-dismiss="modal">
-                        <span aria-hidden="true">&times;</span>
+                        <span>&times;</span>
                     </button>
 
                 </div>
 
                 <div class="modal-body">
 
-                    <form>
+                    <form id="addResourceForm">
 
                         <div class="form-group">
                             <label for="name">Resource Name</label>
@@ -137,6 +139,81 @@
                     <button type="button" class="btn btn-primary"
                         onclick="addResource()">
                         Add New Resource
+                    </button>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- Modify Resource Modal -->
+    <div class="modal fade" id="modifyResourceModal" tabindex="-1"
+        role="dialog" aria-labelledby="modifyResourceModalLabel">
+
+        <div class="modal-dialog" role="document">
+
+            <div class="modal-content">
+
+                <div class="modal-header">
+
+                    <h5 class="modal-title" id="modifyResourceModalLabel">
+                        Modify Resource
+                    </h5>
+
+                    <button type="button" class="close" data-dismiss="modal">
+                        <span>&times;</span>
+                    </button>
+
+                </div>
+
+                <div class="modal-body">
+
+                    <form id="modifyResourceForm">
+
+                        <input type="hidden" id="modifyId">
+
+                        <div class="form-group">
+                            <label for="modifyName">Resource Name</label>
+                            <input type="text" class="form-control"
+                                id="modifyName" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="modifyLocation">Location</label>
+                            <input type="text" class="form-control"
+                                id="modifyLocation" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="modifyDescription">Description</label>
+                            <input type="text" class="form-control"
+                                id="modifyDescription" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="modifyOwner">Owner</label>
+                            <input type="text" class="form-control"
+                                id="modifyOwner" required>
+                        </div>
+
+                    </form>
+
+                </div>
+
+                <div class="modal-footer">
+
+                    <button type="button" class="btn btn-secondary"
+                        data-dismiss="modal">
+                        Close
+                    </button>
+
+                    <button type="button" class="btn btn-primary"
+                        onclick="updateResource()">
+                        Save Changes
                     </button>
 
                 </div>
